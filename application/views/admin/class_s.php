@@ -59,7 +59,7 @@
 
 
                     <div class="item-title">
-                        <h3>All Student Data</h3>
+                        <h3>All class </h3>
                     </div>
                     <div>
                         <a class="btn btn-primary" href="<?php echo base_url() ?>class_s/add_class"
