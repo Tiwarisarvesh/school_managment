@@ -12,10 +12,12 @@ class Class_s extends CI_Controller {
         
     }
 
+    
+
     public function add_class()
     {
         $this->load->view('admin/class_s');
-        
+
     }
 
     public function getid_class()
