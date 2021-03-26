@@ -35,6 +35,16 @@ class Event extends CI_Controller {
 			}
 		}
 	}
+
+    public function event_display()
+    {
+        $this->load->model('event_model');
+        $save['display']=$this->event_model->display_event();
+        $this->load->view('admin/event',$save);
+       
+
+        
+    }
     
 
 

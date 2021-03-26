@@ -217,7 +217,7 @@
                                             class="fas fa-angle-right"></i>Add Event</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="button.html" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                    <a href="<?php echo base_url() ?>event/event_display" class="nav-link"><i class="fas fa-angle-right"></i>All
                                         Event</a>
                                 </li>
                             </ul>
