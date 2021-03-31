@@ -55,6 +55,7 @@ $route['event'] = 'welcome/event';
 $route['teacher'] = 'welcome/teacher';
 $route['course'] = 'welcome/course';
 $route['shop'] = 'welcome/shop';
+$route['blog'] = 'welcome/blog';
 
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';

@@ -20,6 +20,18 @@ class Welcome extends CI_Controller {
 		$this->load->view('about');
 	}
 
+	public function blog()
+	{
+		$id=$this->input->get('id');
+		$this->load->model('blog_model');
+		$this->load->model('category_model');
+		$result['display']=$this->category_model->display_category();
+		
+		$result['load']=$this->blog_model->category_wise_data($id);
+		
+		$this->load->view('blog',$result);
+	}
+
 	public function event()
 	{
 		$this->load->model('event_model');

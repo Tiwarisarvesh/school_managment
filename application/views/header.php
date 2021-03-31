@@ -128,7 +128,7 @@
                                         <li><a href="<?php echo base_url() ?>course">Courses</a>
                                             
                                         </li>
-                                       
+                                        <li><a href="<?php  echo base_url() ?>blog">Blog</a></li>
                                         <li><a href="<?php  echo base_url() ?>contact">Contact</a></li>
                                     </ul>
                                 </nav>
