@@ -30,7 +30,8 @@
                             </div>
                             <div class="item-content">
                                 <h3 class="sidebar-title">
-                                    <a href="<?php echo base_url();?>welcome/event_details/?id=<?php echo $detail->id;?>">
+                                    <a
+                                        href="<?php echo base_url();?>welcome/event_details/?id=<?php echo $detail->id;?>">
                                         <?php echo $detail->event_title; ?></a>
                                 </h3>
                                 <p><?php echo $detail->event_discription; ?>.</p>
@@ -40,9 +41,9 @@
                                     </li>
                                     <li><i class="fa fa-map-marker"
                                             aria-hidden="true"></i><?php echo $detail->event_city; ?></li>
-                                            <li><i class="fa fa-map-marker"
-                                            aria-hidden="true"></i>Sheet : <?php echo $detail->event_sheet; ?></li>
-                                            
+                                    <li><i class="fa fa-map-marker" aria-hidden="true"></i>Sheet :
+                                        <?php echo $detail->event_sheet; ?></li>
+
                                 </ul>
                             </div>
                         </div>

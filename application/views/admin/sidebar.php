@@ -192,6 +192,14 @@
                                     class="flaticon-open-book"></i><span>Subject</span></a>
                         </li>
                         <li class="nav-item">
+                            <a href="<?php echo base_url() ?>Category" class="nav-link"><i
+                                    class="flaticon-open-book"></i><span>Category</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="<?php echo base_url() ?>post" class="nav-link"><i
+                                    class="flaticon-open-book"></i><span>Post</span></a>
+                        </li>
+                        <li class="nav-item">
                             <a href="class-routine.html" class="nav-link"><i class="flaticon-calendar"></i><span>Class
                                     Routine</span></a>
                         </li>

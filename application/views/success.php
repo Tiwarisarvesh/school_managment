@@ -14,6 +14,7 @@ $salt="";
 If (isset($_POST["additionalCharges"])) {
        $additionalCharges=$_POST["additionalCharges"];
         $retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
+        
   } else {
         $retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
          }
@@ -25,4 +26,7 @@ If (isset($_POST["additionalCharges"])) {
           echo "<h4>Your Transaction ID for this transaction is ".$txnid.".</h4>";
           echo "<h4>We have received a payment of Rs. " . $amount . ". Your order will soon be shipped.</h4>";
 		   }
-?>	
+              
+
+               
+?>

@@ -62,9 +62,6 @@
                         </tr>
                         <?php $i++; ?>
                         <?php endforeach; ?>
-
-
-
                         <tr>
                             <td></td>
                             <td></td>

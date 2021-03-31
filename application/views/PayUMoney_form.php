@@ -11,6 +11,11 @@ $PAYU_BASE_URL = "https://sandboxsecure.payu.in";		// For Sandbox Mode
 
 $action = '';
 
+$success = 'http://localhost/school_managment/welcome/payment_success';
+$failer = 'http://localhost/school_managment/welcome/payment_failure';
+
+
+
 $posted = array();
 if(!empty($_POST)) {
     //print_r($_POST);
@@ -29,8 +34,11 @@ if(empty($posted['txnid'])) {
   $txnid = $posted['txnid'];
 }
 $hash = '';
+
+
 // Hash Sequence
 $hashSequence = "key|txnid|amount|productinfo|firstname|email|udf1|udf2|udf3|udf4|udf5|udf6|udf7|udf8|udf9|udf10";
+
 if(empty($posted['hash']) && sizeof($posted) > 0) {
   if(
           empty($posted['key'])
@@ -53,9 +61,9 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
       $hash_string .= isset($posted[$hash_var]) ? $posted[$hash_var] : '';
       $hash_string .= '|';
     }
-
+    
     $hash_string .= $SALT;
-
+    
 
     $hash = strtolower(hash('sha512', $hash_string));
     $action = $PAYU_BASE_URL . '/_payment';
@@ -83,7 +91,7 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
 
 
 <body onload="submitPayuForm()">
-    <h2> Payment : <?php echo $this->cart->format_number($this->cart->total()); ?></h2>
+    <!-- <h2> Payment : <?php echo $this->cart->format_number($this->cart->total()); ?></h2> -->
     <br />
     <?php if($formError) { ?>
 
@@ -91,66 +99,79 @@ if(empty($posted['hash']) && sizeof($posted) > 0) {
     <br />
     <br />
     <?php } ?>
-    <?php foreach ($this->cart->contents() as $items) { ?><?php } ?>
+
     <form action="<?php echo $action; ?>" method="post" name="payuForm">
-        <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
-        <input type="hidden" name="hash" value="<?php echo $hash ?>" />
-        <input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
 
-        <table>
-            <tr>
-                <td style="margin-bottom: 20px;"><b> Your Payment :
-                        <?php echo $this->cart->format_number($this->cart->total()); ?></b></td>
-            </tr>
-            <tr>
-                <td>Amount: </td>
-                <td><input name="amount" value="<?php echo (empty($posted['amount'])) ? '' : $posted['amount'] ?>" />
-                </td>
-                <td>First Name: </td>
-                <td><input name="firstname" id="firstname"
-                        value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" /></td>
-            </tr>
-            <tr>
-                <td>Email: </td>
-                <td><input name="email" id="email"
-                        value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" /></td>
-                <td>Phone: </td>
-                <td><input name="phone" value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" /></td>
-            </tr>
-            <tr>
-                <td>Product Info: </td>
-                <td colspan="3"><textarea
-                        name="productinfo"><?php echo (empty($posted['productinfo'])) ? '' : $posted['productinfo'] ?></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td>Success URI: </td>
-                <td colspan="3"><input name="surl" value="<?php echo (empty($posted['surl'])) ? '' : $posted['surl'] ?>"
-                        size="64" /></td>
-            </tr>
-            <tr>
-                <td>Failure URI: </td>
-                <td colspan="3"><input name="furl" value="<?php echo (empty($posted['furl'])) ? '' : $posted['furl'] ?>"
-                        size="64" /></td>
-            </tr>
+            <div class="section-title">
+                <h2>Checkout</h2>
+            </div>
 
-            <tr>
-                <td colspan="3"><input type="hidden" name="service_provider" value="payu_paisa" size="64" /></td>
-            </tr>
+            <div class="row content">
+                <div class="col-lg-7">
+                    <?php foreach ($this->cart->contents() as $items) { ?><?php } ?>
+                    
+                        <input type="hidden" name="key" value="<?php echo $MERCHANT_KEY ?>" />
+                        <input type="hidden" name="hash" value="<?php echo $hash ?>" />
+                        <input type="hidden" name="txnid" value="<?php echo $txnid ?>" />
+                        <input type="hidden" name="amount"
+                            value="<?php echo $this->cart->format_number($this->cart->total()); ?>" />
+                        <input type="hidden" name="surl" value="<?php echo $success ?>" size="64" />
+                        <input type="hidden" name="furl" value="<?php echo $failer ?>" size="64" />
+                        <input type="hidden" name="service_provider" value="payu_paisa" size="64" />
 
-            <tr>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label>Name</label>
+                                <input name="firstname" id="firstname" class="form-control"
+                                    value="<?php echo (empty($posted['firstname'])) ? '' : $posted['firstname']; ?>" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Address</label>
+                                <input name="productinfo" class="form-control"
+                                    value="<?php echo (empty($posted['productinfo'])) ? '' : $posted['productinfo']; ?>" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input name="email" id="email" class="form-control"
+                                value="<?php echo (empty($posted['email'])) ? '' : $posted['email']; ?>" />
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input name="phone" class="form-control"
+                                value="<?php echo (empty($posted['phone'])) ? '' : $posted['phone']; ?>" />
+                        </div>
+                        <?php if(!$hash) { ?>
+                        <input type="submit" class="btn btn-primary" value="Submit" style="margin-bottom: 20px;"/></td>
+                        <?php } ?>
 
-            <tr>
-                <?php if(!$hash) { ?>
-                <td colspan="4"><input type="submit" value="Submit" /></td>
-                <?php } ?>
-
-            </tr>
-
-        </table>
+                </div>
+                <div class="col-lg-5 pt-4 pt-lg-0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Event Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>Event Name</th>
+                                <td><?php echo $items['name']; ?></td>
+                            </tr>
+                            <tr>
+                                <th>Price</th>
+                                <td>Rs. <?php echo $this->cart->format_number($this->cart->total()); ?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </section>
     </form>
-
 </body>
-
 </html>
 <?php $this->load->view('footer'); ?>

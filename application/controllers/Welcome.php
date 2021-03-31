@@ -80,7 +80,16 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('payumoney_form');
 	}
+
+	public function payment_success()
+	{
+		$this->load->view('success');
+	}
     
+	public function payment_failure()
+	{
+		$this->load->view('failure');
+	}
 	
 
 	public function teacher()
