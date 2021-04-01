@@ -1,6 +1,4 @@
 <?php $this->load->view('header'); ?>
-
-
 <div class="isotop-classes-tab isotop-btn-accent" style="margin: 50px;">
     <h1>Select Category</h1>
     <?php  foreach ($display as $data) { ?>
